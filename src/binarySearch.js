@@ -1,38 +1,36 @@
-let a = [ 1, 2, 4, 6, 19, 21, 25 ];
-
-const binaryIndexOf = (value, a = []) => {
+/**
+ * Uses binary search algorithm to look for value in a sorted collection.
+ *
+ * @param {any} value value to look for
+ * @param {Array} collection sorted collection to look in
+ */
+const indexOf = (value, collection = []) => {
   let start = 0;
-  let end = a.length - 1;
+  let end = collection.length - 1;
 
-  if (a[start] === value) {
+  if (collection[start] === value) {
     return start;
-  } else if (a[end] === value) {
+  } else if (collection[end] === value) {
     return end;
   }
 
   while (start < end) {
-    let middle = Math.ceil((end - start) / 2);
+    const middle = Math.ceil((end - start) / 2);
 
     if (middle === start || middle === end) {
       break;
     }
 
-    if (a[middle] === value) {
+    if (collection[middle] === value) {
       return middle;
-    } else if (a[middle] > value) {
+    } else if (collection[middle] > value) {
       end = middle;
     } else {
       start = middle;
     }
-
-    console.log('?');
   }
 
   return -1;
 };
 
-console.log(binaryIndexOf(1, a));
-console.log(binaryIndexOf(2, a));
-console.log(binaryIndexOf(4, a));
-console.log(binaryIndexOf(21, a));
-console.log(binaryIndexOf(7, a));
+module.exports = indexOf;
